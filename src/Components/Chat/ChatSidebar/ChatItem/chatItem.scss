@@ -1,0 +1,21 @@
+.chat-item{
+  padding: 10px 20px;
+  border-bottom: 1px solid #e6e6e6;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: .2s;
+
+  &:hover,
+  &.active{
+    background: #f5fff5;
+  }
+
+  .chat-item-title{
+    display: block;
+    margin-left: 10px;
+    font-size: 24px;
+    color: #444;
+    text-transform: capitalize;
+  }
+}
