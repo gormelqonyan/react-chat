@@ -1,10 +1,11 @@
-import axios from 'axios'
+import axios from 'axios';
 
 class Services {
+
     postApi(url, token, body){
         return axios({
             method: 'post',
-            url: `http://localhost:3002/v1${url}`,
+            url: `http://localhost:8000/v1${url}`,
             data: body,
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -22,7 +23,7 @@ class Services {
     getApi(url, token){
         return axios({
             method: 'get',
-            url: `http://localhost:3002/v1${url}`,
+            url: `http://localhost:8000/v1${url}`,
             headers: {
                 'Authorization': `Bearer ${token}`
             }

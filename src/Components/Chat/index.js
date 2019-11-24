@@ -17,7 +17,7 @@ class Chat extends Component{
         this.props.userme()
             .then((data) => {
                this.setState({user: data})
-            })
+            });
 
         this.props.getChatItem()
     }

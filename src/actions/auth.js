@@ -5,12 +5,14 @@ import {redirect} from "./services";
 
 
 export const login = (username, password) => {
+    console.log(username, password);
     return dispatch => {
         service.postApi('/login', '', {
             username,
             password
         })
             .then((data) => {
+                console.log(data)
                 localStorage.setItem('token', data.token);
                 dispatch({
                     type: types.LOGIN_SUCCESS,
@@ -21,6 +23,7 @@ export const login = (username, password) => {
 
             })
             .catch((err) => {
+                console.log(err)
                 dispatch({
                     type: types.LOGIN_FAILD,
                     payload: err

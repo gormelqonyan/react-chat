@@ -4,35 +4,66 @@ import './chatSidebar.scss'
 import ChatItem from "./ChatItem";
 import {chathoc} from "../../../HOC/chathoc";
 
+import {CSSTransition} from 'react-transition-group'
+
+import {CreateChatPopup} from './CreateChatPopup'
+
 class ChatSidebar extends Component{
 
+    state = {
+        createChatPopupShow: false,
+    }
+
+    handleCreateChat = () => {
+        this.setState(({createChatPopupShow}) => {
+           return {
+               createChatPopupShow: !createChatPopupShow
+           }
+        })
+    }
 
     render(){
         const {chats} = this.props.value[0];
+        const {createChatPopupShow} = this.state;
         return(
-            <div className="chat-sidebar">
-                <div className="chat-sidebar-search">
-                    <input
-                        type="text"
-                        className="chat-sidebar-search-input"
-                        placeholder="Search chat..."
-                    />
-                </div>
-                <ul className="chat-sidebar-items">
-                    {
-                        chats.map((chat) => (
-                            <li
-                                className="chat-sidebar-item"
-                                key={chat._id}
-                                onClick={() => {this.props.value[0].history.push(`/chat/${chat._id}`)}}
-                            >
-                                <ChatItem title={chat.title}/>
-                            </li>
-                        ))
-                    }
+            <>
+                <CSSTransition
+                    in={createChatPopupShow}
+                    timeout={300}
+                    classNames="alert"
+                    unmountOnExit
+                >
+                    <CreateChatPopup onClose = {() => this.handleCreateChat()}/>
 
-                </ul>
-            </div>
+                </CSSTransition>
+                <div className="chat-sidebar">
+                    <div className="chat-sidebar-search">
+                        <input
+                            type="text"
+                            className="chat-sidebar-search-input"
+                            placeholder="Search chat..."
+                        />
+                    </div>
+                    <button
+                        className="add-chat-item"
+                        onClick={this.handleCreateChat}
+                    >Create chat</button>
+                    <ul className="chat-sidebar-items">
+                        {
+                            chats.map((chat) => (
+                                <li
+                                    className="chat-sidebar-item"
+                                    key={chat._id}
+                                    onClick={() => {this.props.value[0].history.push(`/chat/${chat._id}`)}}
+                                >
+                                    <ChatItem title={chat.title}/>
+                                </li>
+                            ))
+                        }
+
+                    </ul>
+                </div>
+            </>
         )
     }
 }

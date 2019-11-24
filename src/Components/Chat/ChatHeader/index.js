@@ -8,6 +8,8 @@ import {chathoc} from "../../../HOC/chathoc";
 
 const ChatHeader = (props) => {
 
+    console.log(props.value[1])
+
     const {username = ''} = props.value[1].user;
 
     return(
