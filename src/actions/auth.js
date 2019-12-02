@@ -90,9 +90,9 @@ export const userme = () => {
             .then((json) => {
                 dispatch({
                     type: types.SETUSERME_SUCCESS,
-                    payload: json.data.user
+                    payload: json.user
                 });
-                return json.data.user
+                return json.user
             })
             .catch((err) => {
                 dispatch({
@@ -102,3 +102,29 @@ export const userme = () => {
             })
     }
 };
+
+export const reciveAuth = () => {
+    return (dispatch, getState) => {
+        const {token} = getState().auth;
+
+        if(!token){
+            dispatch({
+                type: types.RECIVEAUTH_FAILD
+            })
+        }
+
+        return service.getApi(`/users/me`, token)
+            .then((data) => {
+                dispatch({
+                    type: types.RECIVEAUTH_SUCCESS,
+                    payload: data
+                })
+            })
+            .catch((err) => {
+                dispatch({
+                    type: types.RECIVEAUTH_FAILD,
+                    payload: err
+                })
+            })
+    }
+}

@@ -6,13 +6,14 @@ import {chathoc} from "../../../HOC/chathoc";
 
 import {CSSTransition} from 'react-transition-group'
 
-import {CreateChatPopup} from './CreateChatPopup'
+import CreateChatPopup from './CreateChatPopup'
 
 class ChatSidebar extends Component{
 
     state = {
         createChatPopupShow: false,
-    }
+        allChats: false,
+    };
 
     handleCreateChat = () => {
         this.setState(({createChatPopupShow}) => {
@@ -20,11 +21,17 @@ class ChatSidebar extends Component{
                createChatPopupShow: !createChatPopupShow
            }
         })
+    };
+
+    handleShowChats = (chat) => {
+        this.setState({
+            allChats: chat
+        })
     }
 
     render(){
-        const {chats} = this.props.value[0];
-        const {createChatPopupShow} = this.state;
+        const {chats2} = this.props.value[0];
+        const {createChatPopupShow, allChats} = this.state;
         return(
             <>
                 <CSSTransition
@@ -48,19 +55,36 @@ class ChatSidebar extends Component{
                         className="add-chat-item"
                         onClick={this.handleCreateChat}
                     >Create chat</button>
+                    <div className="chat-sidebar-state-btn">
+                        <button className={allChats ? "active": ""} onClick={() => this.handleShowChats(true)}>All</button>
+                        <button className={allChats ? "" : "active"} onClick={() => this.handleShowChats(false)}>My</button>
+                    </div>
                     <ul className="chat-sidebar-items">
                         {
-                            chats.map((chat) => (
-                                <li
-                                    className="chat-sidebar-item"
-                                    key={chat._id}
-                                    onClick={() => {this.props.value[0].history.push(`/chat/${chat._id}`)}}
-                                >
-                                    <ChatItem title={chat.title}/>
-                                </li>
-                            ))
-                        }
+                            allChats ?
+                                    chats2.all.map((chat) => (
+                                        <li
+                                            className="chat-sidebar-item"
+                                            key={chat._id}
+                                            onClick={() => {this.props.value[0].history.push(`/chat/${chat._id}`)}}
+                                        >
+                                            <ChatItem title={chat.title}/>
+                                        </li>
+                                    ))
 
+                                :
+
+                                    chats2.my.map((chat) => (
+                                        <li
+                                            className="chat-sidebar-item"
+                                            key={chat._id}
+                                            onClick={() => {this.props.value[0].history.push(`/chat/${chat._id}`)}}
+                                        >
+                                            <ChatItem title={chat.title}/>
+                                        </li>
+                                    ))
+
+                        }
                     </ul>
                 </div>
             </>

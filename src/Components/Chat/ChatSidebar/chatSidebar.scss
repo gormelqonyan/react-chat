@@ -1,5 +1,5 @@
 .chat-sidebar{
-  width: 300px;
+  min-width: 300px;
   height: 100vh;
   border-right: 1px solid #e6e6e6;
 
@@ -24,6 +24,7 @@
 
 
   .add-chat-item{
+
     display: block;
     padding: 10px 0;
     border-radius: 100px;
@@ -37,6 +38,33 @@
 
     &:hover{
       background: #087f23;
+    }
+  }
+
+  &-state-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    border-top: 1px solid #e6e6e6;
+
+    button{
+      width: 100px;
+      border-radius: 100px;
+      height: 30px;
+      border: 1px solid #087f23;
+      background: transparent;
+      cursor: pointer;
+
+      &:not(:first-child){
+        margin-left: 10px;
+      }
+
+      &.active{
+        background: #087f23;
+        color: #ffffff;
+        border-color: transparent;
+      }
     }
   }
 }

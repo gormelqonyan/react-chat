@@ -14,4 +14,8 @@ export const SETUSERME_REQUEST = Symbol('SETUSERME_REQUEST');
 export const SETUSERME_SUCCESS = Symbol('SETUSERME_SUCCESS');
 export const SETUSERME_FAILD = Symbol('SETUSERME_FAILD');
 
+export const RECIVEAUTH_REQUEST = Symbol('RECIVEAUTH_REQUEST');
+export const RECIVEAUTH_SUCCESS = Symbol('RECIVEAUTH_SUCCESS');
+export const RECIVEAUTH_FAILD = Symbol('RECIVEAUTH_FAILD');
+
 export const REDIRECT = Symbol('REDIRECT');

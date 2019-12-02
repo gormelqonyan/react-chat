@@ -4,7 +4,7 @@ import * as types from '../constants/auth'
 const token = localStorage.getItem('token');
 
 const initialState = {
-    user: null,
+    user: {},
     token: token,
     isAuthenticated: !!token
 };
@@ -20,21 +20,16 @@ export const auth = (state = initialState, action) => {
                 token: action.payload.token
             };
 
-        case types.SETUSERME_SUCCESS:
+        case types.RECIVEAUTH_SUCCESS:
             return {
                 ...state,
-                user: action.payload
-            };
-
-        case types.SETUSERME_FAILD:
-            return {
-                ...state,
-                user: null
+                user: action.payload.user
             };
 
         case types.LOGIN_FAILD:
         case types.REGISTRATION_FAILD:
         case types.LOGOUT_SUCCESS:
+        case types.RECIVEAUTH_FAILD:
             return {
                 ...state,
                 user: null,

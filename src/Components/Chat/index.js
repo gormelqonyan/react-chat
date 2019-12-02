@@ -9,23 +9,20 @@ import ChatSendMessage from "./ChatSendMessage";
 import {ChatProvider} from "../../utils/chatContext";
 
 class Chat extends Component{
-    state = {
-        user: {}
-    };
 
     componentDidMount() {
-        this.props.userme()
-            .then((data) => {
-               this.setState({user: data})
-            });
+        const {fetchAllChat, fetchMyChat, getChatItem} = this.props;
+        Promise.all([
+            fetchAllChat(),
+            fetchMyChat(),
+        ])
 
-        this.props.getChatItem()
     }
 
     render(){
-
+        console.log("asssssssssasss0",this.props.activeUser)
         return(
-            <ChatProvider value={[this.props, this.state]}>
+            <ChatProvider value={[this.props]}>
                 <div className="chat">
                     <ChatSidebar/>
                     <div className="chat-content">

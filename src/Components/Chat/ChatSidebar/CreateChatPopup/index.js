@@ -1,11 +1,19 @@
 import React, {useState} from "react";
 
-import "./createChatPopup.scss"
 
-export const CreateChatPopup = (props) => {
+
+import "./createChatPopup.scss"
+import {chathoc} from "../../../../HOC/chathoc";
+
+const CreateChatPopup = (props) => {
 
     const {onClose = () => {}} = props;
-    const [newChatTitle, setNewChatTitle] = useState('');
+    const [newChatTitle, setNewChatTitle] = useState("");
+
+    const handleCreateChatItem = () => {
+        onClose();
+        props.value[0].setNewChat(newChatTitle);
+    };
 
     return(
         <div className="create-chat-popup">
@@ -20,10 +28,12 @@ export const CreateChatPopup = (props) => {
                 />
 
                 <div className="create-chat-popup-content-btn">
-                    <button className="create-chat-popup-content-add">Create</button>
+                    <button className="create-chat-popup-content-add" onClick={handleCreateChatItem}>Create</button>
                     <button className="create-chat-popup-content-cancel" onClick={onClose}>cancel</button>
                 </div>
             </div>
         </div>
     )
-}
+};
+
+export default chathoc(CreateChatPopup);

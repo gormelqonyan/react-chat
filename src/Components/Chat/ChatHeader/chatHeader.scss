@@ -6,10 +6,50 @@
   justify-content: space-between;
 
   .active-chat{
+    display: flex;
+    align-items: center;
     &-title{
       font-size: 24px;
       color: #ffffff;
       margin: 0;
+    }
+
+    .drop-down-btn{
+      width: 20px;
+      margin-left: 10px;
+      cursor: pointer;
+      position: relative;
+
+      img{
+        width: 100%;
+      }
+
+      .delete-chat-btn{
+        position: absolute;
+        top: calc(100% - 10px);
+        white-space: nowrap;
+        background: #ffffff;
+        padding: 10px 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 10px;
+        box-shadow: 0px 1px 10px 0px rgba(34, 34, 34, 0.12);
+        transition: .2s;
+        pointer-events: none;
+        opacity: 0;
+        transition: .2s;
+
+        &.active{
+          top: calc(100% + 10px);
+          pointer-events: auto;
+          opacity: 1;
+        }
+
+        &:hover{
+          background: #c50845;
+          color: #ffffff;
+        }
+      }
     }
   }
 
