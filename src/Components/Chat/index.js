@@ -20,7 +20,6 @@ class Chat extends Component{
     }
 
     render(){
-        console.log("asssssssssasss0",this.props.activeUser)
         return(
             <ChatProvider value={[this.props]}>
                 <div className="chat">
