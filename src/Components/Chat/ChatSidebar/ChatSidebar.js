@@ -30,7 +30,7 @@ class ChatSidebar extends Component{
     }
 
     render(){
-        const {chats2} = this.props.value[0];
+        const {chats2} = this.props.value;
         const {createChatPopupShow, allChats} = this.state;
         return(
             <>
@@ -66,7 +66,7 @@ class ChatSidebar extends Component{
                                         <li
                                             className="chat-sidebar-item"
                                             key={chat._id}
-                                            onClick={() => {this.props.value[0].history.push(`/chat/${chat._id}`)}}
+                                            onClick={() => {this.props.value.history.push(`/chat/${chat._id}`)}}
                                         >
                                             <ChatItem title={chat.title}/>
                                         </li>
@@ -78,7 +78,7 @@ class ChatSidebar extends Component{
                                         <li
                                             className="chat-sidebar-item"
                                             key={chat._id}
-                                            onClick={() => {this.props.value[0].history.push(`/chat/${chat._id}`)}}
+                                            onClick={() => {this.props.value.history.push(`/chat/${chat._id}`)}}
                                         >
                                             <ChatItem title={chat.title}/>
                                         </li>

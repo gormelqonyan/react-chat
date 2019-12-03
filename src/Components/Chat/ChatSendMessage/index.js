@@ -14,9 +14,11 @@ import {chathoc} from "../../../HOC/chathoc";
         this.setState({content: e.target.value})
     };
 
-    handleSendMessage = (content) => {
-        const {id = ""} = this.props.value[0].match.params;
-        const {sendMessage} = this.props.value[0];
+    handleSendMessage = e => {
+        console.log("event", e.target)
+        const {content} = this.state;
+        const {id = ""} = this.props.value.match.params;
+        const {sendMessage} = this.props.value;
         if(content.trim() !== ""){
             sendMessage(id, content);
             this.setState({
@@ -27,18 +29,17 @@ import {chathoc} from "../../../HOC/chathoc";
 
     render(){
 
-
         const {content} = this.state;
         return(
-            <form className="chat-send-message" onSubmit={(e) => {e.preventDefault(); this.handleSendMessage(content)}}>
+            <form className="chat-send-message">
                 <textarea
                     className="chat-send-message-textarea"
                     placeholder="Type tour message..."
-                    onChange={(e) => {this.handleChangeContent(e)}}
+                    onChange={this.handleChangeContent}
                     value={content}
                 />
 
-                <div className="chat-send-message-btn" onClick={() => {this.handleSendMessage(content)}}>
+                <div className="chat-send-message-btn" onClick={this.handleSendMessage}>
                     <img src={sendIcon} alt="send-icon" className="chat-send-message-btn-icon"/>
                 </div>
             </form>

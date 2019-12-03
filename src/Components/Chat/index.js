@@ -11,7 +11,7 @@ import {ChatProvider} from "../../utils/chatContext";
 class Chat extends Component{
 
     componentDidMount() {
-        const {fetchAllChat, fetchMyChat, getChatItem} = this.props;
+        const {fetchAllChat, fetchMyChat} = this.props;
         Promise.all([
             fetchAllChat(),
             fetchMyChat(),
@@ -21,7 +21,7 @@ class Chat extends Component{
 
     render(){
         return(
-            <ChatProvider value={[this.props]}>
+            <ChatProvider value={this.props}>
                 <div className="chat">
                     <ChatSidebar/>
                     <div className="chat-content">

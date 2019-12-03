@@ -12,8 +12,8 @@ class ChatMessages extends Component{
 
 
     componentDidMount() {
-        const {id = ""} = this.props.value[0].match.params;
-        this.props.value[0].setActiveChat(id);
+        const {id = ""} = this.props.value.match.params;
+        this.props.value.setActiveChat(id);
 
         if(id){
             this.messages.current.scrollTop = this.messages.current.firstChild.clientHeight
@@ -22,9 +22,9 @@ class ChatMessages extends Component{
     }
 
     componentDidUpdate(prevProps) {
-        const {id = ""} = this.props.value[0].match.params;
-        if(prevProps.value[0].match.params !== this.props.value[0].match.params){
-            this.props.value[0].setActiveChat(id)
+        const {id = ""} = this.props.value.match.params;
+        if(prevProps.value.match.params !== this.props.value.match.params){
+            this.props.value.setActiveChat(id)
         }
 
         if(id){
@@ -37,9 +37,9 @@ class ChatMessages extends Component{
 
         console.log(this.props)
 
-        const {messages} = this.props.value[0];
-        const userId = this.props.value[0].user._id;
-        const {id = ""} = this.props.value[0].match.params;
+        const {messages} = this.props.value;
+        const userId = this.props.value.user._id;
+        const {id = ""} = this.props.value.match.params;
 
 
         return(

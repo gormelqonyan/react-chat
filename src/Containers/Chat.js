@@ -12,10 +12,10 @@ import {
     fetchMyChat
 } from "../actions/chat";
 
-import {isMember, isCreator, isChatMember} from '../reducers'
+import {isMember, isCreator, isChatMember} from '../reducers';
 
 const mapStatToProps = state => {
-    const activeChat = getById(state.chats, state.chats.activeId );
+    const activeChat = getById(state.chats.byIds, state.chats.activeId );
     return {
         chats2: {
             all: getByIds(state.chats, state.chats.allIds),

@@ -12,14 +12,14 @@ const ChatHeader = (props) => {
 
     const [showDeleteDropDown, setShowDeleteDropDown] = useState(false);
 
-    const {username = ''} = props.value[0].user;
-    const {id} = props.value[0].match.params;
+    const {username = ''} = props.value.user;
+    const {id} = props.value.match.params;
 
-    const activeChat = props.value[0].chats2.all.find((chat) => {
+    const activeChat = props.value.chats2.all.find((chat) => {
         return chat._id === id
     });
 
-    const {deleteChat} = props.value[0];
+    const {deleteChat} = props.value;
 
     return(
         <header className='chat-header'>
@@ -39,7 +39,7 @@ const ChatHeader = (props) => {
                     <img src={userIcon} alt="user icon" className="user-icon"/>
                     <h4 className="user-name">{username}</h4>
                 </div>
-                <div className="logout" onClick={props.value[0].logout}>
+                <div className="logout" onClick={props.value.logout}>
                     <img src={logout} alt="logout" className="logout-icon"/>
                 </div>
             </div>
