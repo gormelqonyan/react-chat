@@ -9,7 +9,8 @@ import {
     sendMessage,
     deleteChat,
     fetchAllChat,
-    fetchMyChat
+    fetchMyChat,
+    joinChat
 } from "../actions/chat";
 
 import {isMember, isCreator, isChatMember} from '../reducers';
@@ -40,7 +41,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     sendMessage,
     deleteChat,
     fetchAllChat,
-    fetchMyChat
+    fetchMyChat,
+    joinChat
 }, dispatch);
 
 export default connect(

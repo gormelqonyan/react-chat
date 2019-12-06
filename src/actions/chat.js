@@ -123,6 +123,36 @@ export const setActiveChat = (chatId) => {
     }
 };
 
+export const joinChat = (chatId) => {
+    return (dispatch, getState) => {
+        const {token} = getState().auth;
+
+        console.log("join chat chatId", chatId)
+
+        return service.getApi(`/chats/${chatId}/join`, token)
+            .then(({chat}) => {
+                console.log("join chat action", chat)
+                dispatch({
+                    type: types.JOIN_CHAT_SUCCESS,
+                    payload: chat
+                });
+
+                dispatch(redirect(`/chat/${chat._id}`));
+
+                return chat;
+            })
+            .catch((err) => {
+                console.log(err)
+                console.log("errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrror")
+                dispatch({
+                    type: types.JOIN_CHAT_FAILD,
+                    payload: err
+                })
+            })
+
+    }
+}
+
 export const sendMessage = (chatId, content) => {
     return (dispatch, getState) => {
         const {token} = getState().auth;

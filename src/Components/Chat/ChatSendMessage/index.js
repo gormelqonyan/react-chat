@@ -28,21 +28,32 @@ import {chathoc} from "../../../HOC/chathoc";
     };
 
     render(){
-
+        const {isChatMember} = this.props.value.activeUser;
+        const {joinChat} = this.props.value;
         const {content} = this.state;
-        return(
-            <form className="chat-send-message">
-                <textarea
-                    className="chat-send-message-textarea"
-                    placeholder="Type tour message..."
-                    onChange={this.handleChangeContent}
-                    value={content}
-                />
 
-                <div className="chat-send-message-btn" onClick={this.handleSendMessage}>
-                    <img src={sendIcon} alt="send-icon" className="chat-send-message-btn-icon"/>
-                </div>
-            </form>
+
+        const chatId = this.props.value.match.params.id;
+        return(
+            <div className="chat-send-message">
+            {
+                isChatMember ?
+                    <form className="send-message-content">
+                        <textarea
+                            className="chat-send-message-textarea"
+                            placeholder="Type tour message..."
+                            onChange={this.handleChangeContent}
+                            value={content}
+                        />
+
+                        <div className="chat-send-message-btn" onClick={this.handleSendMessage}>
+                            <img src={sendIcon} alt="send-icon" className="chat-send-message-btn-icon"/>
+                        </div>
+                    </form> :
+                    <div className="join-chat" onClick={() => joinChat(chatId)}>Join chat</div>
+            }
+            </div>
+
         )
     }
 }

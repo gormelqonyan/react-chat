@@ -3,8 +3,25 @@
   padding: 20px 30px 15px;
   border-top: 1px solid #e6e6e6;
   box-sizing: border-box;
-  display: flex;
-  align-items: center;
+
+  .send-message-content{
+    display: flex;
+    align-items: center;
+  }
+
+  .join-chat{
+    padding: 10px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #4caf50;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    cursor: pointer;
+  }
+
 
   &-textarea{
     width: 100%;

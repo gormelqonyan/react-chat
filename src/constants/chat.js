@@ -31,3 +31,8 @@ export const FETCH_MY_CHAT_FAILD = Symbol('FETCH_MY_CHAT_FAILD');
 
 export const SET_ACTIVE_CHAT = Symbol('SET_ACTIVE_CHAT');
 export const UNSET_ACTIVE_CHAT = Symbol('UNSET_ACTIVE_CHAT');
+
+
+export const JOIN_CHAT_REQUEST = Symbol('JOIN_CHAT_REQUEST');
+export const JOIN_CHAT_SUCCESS = Symbol('JOIN_CHAT_SUCCESS');
+export const JOIN_CHAT_FAILD = Symbol('JOIN_CHAT_FAILD');

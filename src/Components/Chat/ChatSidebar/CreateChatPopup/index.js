@@ -12,7 +12,7 @@ const CreateChatPopup = (props) => {
 
     const handleCreateChatItem = () => {
         onClose();
-        props.value[0].setNewChat(newChatTitle);
+        props.value.setNewChat(newChatTitle);
     };
 
     return(

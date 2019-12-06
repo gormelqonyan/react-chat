@@ -10,9 +10,14 @@ const initialState2 = {
 };
 
 const activeId = (state = initialState2.activeId, action) => {
+    console.log("activeId action type", action.type)
     switch (action.type) {
         case types.SET_ACTIVE_CHAT:
+        case types.JOIN_CHAT_SUCCESS:
+            console.log("activeId");
             return getIds(action.payload.chat);
+        case types.JOIN_CHAT_FAILD:
+            return "";
         default: return state
     }
 };
@@ -30,10 +35,13 @@ const allIds = (state = initialState2.allIds, action) => {
     }
 };
 const myIds = (state = initialState2.myIds, action) => {
+    console.log("myIds action type", action.type)
     switch (action.type) {
         case types.FETCH_MY_CHAT_SUCCESS:
             return action.payload.chats.map(getIds);
         case types.CREATE_CHAT_SUCCESS:
+        case types.JOIN_CHAT_SUCCESS:
+            console.log("myIDs");
             return [...state, action.payload.chat._id];
         case types.DELTE_CHAT_SUCCESS:
             return [...state.filter((id) => {
@@ -43,21 +51,22 @@ const myIds = (state = initialState2.myIds, action) => {
     }
 };
 const byIds = (state = initialState2.byIds, action) => {
+    console.log("byIds action type", action.type)
     switch (action.type) {
         case types.FETCH_ALL_CHAT_SUCCESS:
         case types.FETCH_MY_CHAT_SUCCESS:
             return {
                 ...state,
                 ...action.payload.chats.reduce((ids, chat) => {
-                    console.log("asasasas", chat);
                     return{
                         ...ids,
                         [chat._id]: chat,
                     }
                 }, {})
             };
-
+        case types.JOIN_CHAT_SUCCESS:
         case types.CREATE_CHAT_SUCCESS:
+            console.log("aaaaaaaaaaaaaaaaaaaaaaa");
             return {
                 ...state,
                 [action.payload.chat._id]: action.payload.chat
